@@ -74,13 +74,13 @@ Restart Termux after granting permission.
 ## Step 4 — Clone Repository
 
 ```bash
-git clone https://github.com/IYOO-areosI3/-Informative-theme.git
+git clone https://github.com/IYOO-areosI3/Informative-theme.git
 ```
 
 Enter repository:
 
 ```bash
-cd -Informative-theme
+cd Informative-theme
 ```
 
 ---
