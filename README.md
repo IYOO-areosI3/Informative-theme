@@ -1,59 +1,125 @@
 # Informative Starship Theme
 
-A clean and informative Starship prompt configuration for Linux and Termux users.
+A clean, modern, and informative Starship prompt theme for Linux and Termux users.
 
-This theme provides:
-- Better prompt readability
-- Informative shell sections
-- Cleaner command-line appearance
-- Modern prompt styling
-- Easy installation for beginners
+This repository provides:
+- Informative shell prompt layout
+- Clean prompt styling
+- Beginner-friendly installer
+- Easy theme switching
+- Automatic configuration setup
 
 ---
 
-# Preview
+# Repository
 
-This theme replaces your current Starship configuration with the provided `informativetheme.toml`.
+[github.com](https://reference-url-citation.invalid/0)
+
+---
+
+# Features
+
+- Modern Starship prompt
+- Simple installation process
+- Works on Termux
+- Bash & Zsh support
+- Automatic config overwrite
+- Lightweight setup
 
 ---
 
 # Requirements
 
-Before installing, make sure you have:
+Before installation, make sure you have:
 
-- Python 3 installed
-- Starship installed
-- Git (optional)
-- `rich` Python package installed
+- Python 3
+- Git
+- Starship
+- Internet connection
 
 ---
 
-# Install Dependencies
+# Installation Guide
 
-## Termux
+## Step 1 — Update Packages
 
-Update packages:
-
-```bash
-pkg update && pkg upgrade
-```
-
-Install Python:
+For Termux users:
 
 ```bash
-pkg install python
+pkg update && pkg upgrade -y
 ```
 
-Install Starship:
+---
+
+## Step 2 — Install Required Packages
 
 ```bash
-pkg install starship
+pkg install python git starship -y
 ```
 
-Install the required Python package:
+---
+
+## Step 3 — Grant Storage Permission
+
+Required for accessing files from internal storage.
+
+```bash
+termux-setup-storage
+```
+
+Restart Termux after granting permission.
+
+---
+
+## Step 4 — Clone Repository
+
+```bash
+git clone https://github.com/IYOO-areosI3/-Informative-theme.git
+```
+
+Enter repository:
+
+```bash
+cd -Informative-theme
+```
+
+---
+
+## Step 5 — Install Python Dependency
 
 ```bash
 pip install rich
+```
+
+---
+
+## Step 6 — Run Installer
+
+```bash
+python install.py
+```
+
+OR
+
+```bash
+./install.py
+```
+
+---
+
+# What The Installer Does
+
+The installer will:
+
+- Create `~/.config` if missing
+- Copy theme config automatically
+- Overwrite existing Starship config
+- Install the informative theme
+
+Target config location:
+
+```bash
+~/.config/starship.toml
 ```
 
 ---
@@ -62,26 +128,21 @@ pip install rich
 
 ⚠ WARNING:
 
-This installer WILL overwrite your current Starship configuration file:
+Running the installer WILL overwrite your current Starship configuration.
 
-```bash
-~/.config/starship.toml
-```
-
-If you already have a custom theme, create a backup first.
+If you already use a custom theme, create a backup first.
 
 ---
 
-# Backup Existing Configuration
+# Backup Existing Theme
 
-Recommended:
+Create backup:
 
 ```bash
-mkdir -p ~/.config
 cp ~/.config/starship.toml ~/.config/starship-backup.toml
 ```
 
-Restore later if needed:
+Restore backup later:
 
 ```bash
 cp ~/.config/starship-backup.toml ~/.config/starship.toml
@@ -89,84 +150,11 @@ cp ~/.config/starship-backup.toml ~/.config/starship.toml
 
 ---
 
-# Installation Steps
-
-## Step 1 — Download Theme
-
-Move the theme file somewhere accessible.
-
-Example:
-
-```bash
-/storage/emulated/0/Music/informativetheme.toml
-```
-
----
-
-## Step 2 — Create Installer Script
-
-Create file:
-
-```bash
-nano install.py
-```
-
-Paste this:
-
-```python
-#!/usr/bin/env python3
-
-from rich import print
-from pathlib import Path
-import shutil
-import sys
-
-source = Path("/sdcard/Music/informativetheme.toml")
-destination = Path.home() / ".config" / "starship.toml"
-
-print("[red][underline]Read Warning:[/][/]")
-print("[red]This will overwrite your Starship configuration.[/]")
-
-if input("Proceed? [yes/no]: ").lower() != "yes":
-    print("Program exited.")
-    sys.exit()
-
-destination.parent.mkdir(parents=True, exist_ok=True)
-
-shutil.copy(source, destination)
-
-print("[green]Theme copied successfully![/]")
-```
-
----
-
-## Step 3 — Make Script Executable
-
-```bash
-chmod +x install.py
-```
-
----
-
-## Step 4 — Run Installer
-
-```bash
-./install.py
-```
-
-OR
-
-```bash
-python install.py
-```
-
----
-
 # Enable Starship
 
-Add this line to your shell config.
+## Bash Users
 
-## Bash
+Add Starship initialization:
 
 ```bash
 echo 'eval "$(starship init bash)"' >> ~/.bashrc
@@ -180,16 +168,34 @@ source ~/.bashrc
 
 ---
 
-## Zsh
+## Zsh Users
+
+Add initialization:
 
 ```bash
 echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 ```
 
-Reload:
+Reload shell:
 
 ```bash
 source ~/.zshrc
+```
+
+---
+
+# Verify Installation
+
+Check Starship version:
+
+```bash
+starship --version
+```
+
+Check installed config:
+
+```bash
+cat ~/.config/starship.toml
 ```
 
 ---
@@ -203,7 +209,7 @@ source ~/.zshrc
 ModuleNotFoundError: No module named 'rich'
 ```
 
-### Fix:
+### Fix
 
 Install Rich:
 
@@ -218,9 +224,9 @@ pip install rich
 Permission denied
 ```
 
-### Fix:
+### Fix
 
-Make script executable:
+Make installer executable:
 
 ```bash
 chmod +x install.py
@@ -233,7 +239,7 @@ chmod +x install.py
 starship: command not found
 ```
 
-### Fix:
+### Fix
 
 Install Starship:
 
@@ -241,7 +247,7 @@ Install Starship:
 pkg install starship
 ```
 
-Verify installation:
+Verify:
 
 ```bash
 starship --version
@@ -251,21 +257,33 @@ starship --version
 
 ## Error:
 ```bash
-No such file or directory
+git: command not found
 ```
 
-### Cause:
-The theme file path is incorrect.
+### Fix
 
-### Fix:
-
-Verify the file exists:
+Install Git:
 
 ```bash
-ls /sdcard/Music/
+pkg install git
 ```
 
-Update the source path inside the script if needed.
+---
+
+## Error:
+```bash
+fatal: destination path already exists
+```
+
+### Fix
+
+Remove old repository:
+
+```bash
+rm -rf -Informative-theme
+```
+
+Then clone again.
 
 ---
 
@@ -274,23 +292,23 @@ Update the source path inside the script if needed.
 Storage permission denied
 ```
 
-### Fix:
+### Fix
 
-Grant storage permission:
+Run:
 
 ```bash
 termux-setup-storage
 ```
 
-Then restart Termux.
+Restart Termux afterward.
 
 ---
 
 ## Error:
-Theme does not appear after installation
+Theme not appearing after install
 ```
 
-### Fixes:
+### Fixes
 
 Reload shell:
 
@@ -300,7 +318,13 @@ source ~/.bashrc
 
 OR restart Termux completely.
 
-Also verify:
+Verify config exists:
+
+```bash
+ls ~/.config/
+```
+
+Check contents:
 
 ```bash
 cat ~/.config/starship.toml
@@ -308,9 +332,31 @@ cat ~/.config/starship.toml
 
 ---
 
+# Updating Theme
+
+Go into repository:
+
+```bash
+cd -Informative-theme
+```
+
+Pull latest changes:
+
+```bash
+git pull
+```
+
+Run installer again:
+
+```bash
+python install.py
+```
+
+---
+
 # Restore Previous Theme
 
-If you created a backup:
+If backup exists:
 
 ```bash
 cp ~/.config/starship-backup.toml ~/.config/starship.toml
@@ -332,19 +378,26 @@ Remove Starship config:
 rm ~/.config/starship.toml
 ```
 
-Remove Starship init line from:
+Remove initialization line from:
 
 - `~/.bashrc`
 - `~/.zshrc`
+
+Optionally uninstall Starship:
+
+```bash
+pkg remove starship
+```
 
 ---
 
 # Notes
 
 - Designed mainly for Termux/Linux
-- Compatible with Bash and Zsh
-- Python installer is beginner-friendly
-- You may freely edit the TOML file later
+- Works best with Nerd Fonts
+- Compatible with Bash & Zsh
+- Theme is customizable
+- Safe for beginners
 
 ---
 
@@ -358,4 +411,4 @@ Remove Starship init line from:
 
 # License
 
-Free to use and modify.
+Free to use, modify, and distribute.
