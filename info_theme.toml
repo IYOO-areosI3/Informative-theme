@@ -1,0 +1,49 @@
+format = """
+$git_branch\
+$directory\
+$git_status\
+$python\
+$nodejs\
+$lua\
+$c\
+$cpp\
+$fortran\
+$cobol\
+\n$character"""
+
+[directory]
+style = "bold cyan"
+format = "inside [$path]($style) "
+[character]
+success_symbol = "[󰁘 ](bold green)"
+error_symbol = "[󰁘 ](bold red)"
+[git_branch]
+symbol = " "
+style = "bold blue"
+format = "in [$symbol$branch]($style) "
+[fortran]
+symbol = " "
+style = "bold yellow"
+format = "[with $symbol using ${version}]($style) "
+[lua]
+symbol = " "
+style = "bold blue"
+format = "[with $symbol using ${version}]($style) "
+[nodejs]
+symbol = " "
+style = "bold yellow"
+format = "[with $symbol using ${version}]($style) "
+[python]
+symbol = " "
+style = "bold yellow"
+format = "[with $symbol using ${version}]($style) "
+[c]
+symbol = " "
+style = "bold green"
+format = "[with $symbol using ${version}]($style) "
+[cpp]
+symbol = " "
+style = "bold green"
+format = "[with $symbol using ${version}]($style) "
+[cobol]
+symbol = "(0:no_icon_provided:0)"
