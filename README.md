@@ -96,15 +96,8 @@ pip install rich
 ## Step 6 — Run Installer
 
 ```bash
-python install.py
+python setup
 ```
-
-OR
-
-```bash
-./install.py
-```
-
 ---
 
 # What The Installer Does
