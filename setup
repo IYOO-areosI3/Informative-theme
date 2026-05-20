@@ -5,7 +5,7 @@ from pathlib import Path
 import shutil
 import sys
 
-source = Path("~/Informative-theme/info_theme.toml")
+source = Path("$HOME/Informative-theme/info_theme.toml")
 destination = Path.home() / ".config" / "starship.toml"
 
 print("[red][underline]Read Warning:[/][/]")
