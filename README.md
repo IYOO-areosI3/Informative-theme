@@ -273,7 +273,7 @@ fatal: destination path already exists
 Remove old repository:
 
 ```bash
-rm -rf -Informative-theme
+rm -rf Informative-theme
 ```
 
 Then clone again.
@@ -330,7 +330,7 @@ cat ~/.config/starship.toml
 Go into repository:
 
 ```bash
-cd -Informative-theme
+cd Informative-theme
 ```
 
 Pull latest changes:
@@ -342,7 +342,7 @@ git pull
 Run installer again:
 
 ```bash
-python install.py
+python setup
 ```
 
 ---
